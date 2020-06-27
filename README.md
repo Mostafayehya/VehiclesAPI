@@ -1,6 +1,8 @@
 # ND035-P02-VehiclesAPI-Project
 
-REST-based Vehicles API that communicates with a location and pricing service using Spring Boot, along with converting the existing Pricing Service API to a microservice registered on a Eureka server.
+REST-based Vehicles API that communicates with a location and pricing services. 
+location is a traditional RESTful API webservice. 
+Price is a microservice that it registered to an Eureka server.
 
 ## Instructions
 
