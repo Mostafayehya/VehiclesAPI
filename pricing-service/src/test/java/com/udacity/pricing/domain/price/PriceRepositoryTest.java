@@ -13,20 +13,20 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PriceRepository.class)
+@WebMvcTest(PriceRepository.class) //this shouldn't work as it only scans the class annotated with @ controllers and @RestControllers
 public class PriceRepositoryTest {
 
     @MockBean
     PriceRepository priceRepository;
 
     @Autowired
-    MockMvc mockMvc;
+    MockMvc mockMvc;  // This is used to simulate a HTTP request to the tested controller
 
     @Test
     public void getPrices() throws Exception{
@@ -44,6 +44,7 @@ public class PriceRepositoryTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json("[]"));
+
         verify(priceRepository,times(1)).findById(1L);
 
     }
